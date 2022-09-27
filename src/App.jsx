@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { v4 as uuid4 } from "uuid";
+import { Routes, Route } from "react-router-dom";
+
 
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import Header from './components/Header'
+import TaskDetails from "./components/TaskDetails";
 
 import "./App.css";
 
@@ -49,17 +52,21 @@ const App = () => {
   };
 
   return (
-    <>
-      <div className="container">
-        <Header/>
-        <AddTask handleTaskAddition={handleTaskAddition} />
-        <Tasks 
-          tasks={tasks} 
-          handleTaskClick={handleTaskClick}
-          handleTaskDeletion={handleTaskDeletion} 
-        />
-      </div>
-    </>
+      <Routes>
+        <Route>
+          <div className="container">
+            <Header/>
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition} />
+              <Tasks 
+                tasks={tasks} 
+                handleTaskClick={handleTaskClick}
+                handleTaskDeletion={handleTaskDeletion} 
+              />
+            </>
+          </div>
+        </Route>
+      </Routes>
   );
 };
 
